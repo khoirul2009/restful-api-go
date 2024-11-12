@@ -1,0 +1,36 @@
+POST http://localhost:3000/users HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Robi Irawan",
+    "email": "robi@gmail.com",
+    "password": "123khoirul456"
+}
+###
+
+GET http://localhost:3000/users/b2e4f0d2-bb13-4145-ba25-1047665042fa HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+
+###
+
+GET http://localhost:3000/users HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+
+###
+PUT http://localhost:3000/users/e2d890cf-7017-42a3-8678-bc8fb69c00ae HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Robi Irawan 3",
+    "email": "robi213@gmail.com"
+}
+###
+
+DELETE http://localhost:3000/users/b2e4f0d2-bb13-4145-ba25-1047665042fa HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+
