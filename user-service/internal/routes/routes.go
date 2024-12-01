@@ -7,7 +7,7 @@ import (
 )
 
 // SetupRoutes defines the API routes and injects the controller dependencies
-func SetupRoutes(app *fiber.App, userController *controllers.UserController) {
+func SetupRoutes(app *fiber.App, userController *controllers.UserController, authController *controllers.AuthController) {
 	// Basic route to check the server
 	app.Get("/", userController.Home)
 
@@ -18,4 +18,8 @@ func SetupRoutes(app *fiber.App, userController *controllers.UserController) {
 	userRoutes.Post("/", userController.CreateUser)      // POST /users - Create a new user
 	userRoutes.Put("/:id", userController.UpdateUser)    // PUT /users/:id - Update user by ID
 	userRoutes.Delete("/:id", userController.DeleteUser) // DELETE /users/:id - Delete user by ID
+
+	authRoutes := app.Group("/auth")
+
+	authRoutes.Post("/login", authController.Login)
 }

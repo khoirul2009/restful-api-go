@@ -12,8 +12,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-var validate = validator.New()
-
 // UserController handles user-related HTTP requests
 type UserController struct {
 	UserService *services.UserService
@@ -51,10 +49,12 @@ func (uc *UserController) GetUser(c *fiber.Ctx) error {
 // CreateUser handles POST requests to create a new user
 func (uc *UserController) CreateUser(c *fiber.Ctx) error {
 	// Bind request ke CreateUserRequest
+	var validate = validator.New()
 
-	var req = &request.CreateUserRequest{}
+	var req request.CreateUserRequest
+
 	if err := c.BodyParser(&req); err != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Failed to parse request body"})
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err.Error()})
 	}
 
 	// Validasi input menggunakan go-playground/validator

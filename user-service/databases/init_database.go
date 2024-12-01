@@ -3,6 +3,7 @@ package databases
 import (
 	"fmt"
 	"learn-go-fiber/internal/config"
+	"learn-go-fiber/internal/models"
 	"log"
 
 	"gorm.io/driver/postgres"
@@ -23,6 +24,9 @@ func InitDB() *gorm.DB {
 	if err != nil {
 		log.Fatalf("Could not connect to the database: %v", err)
 	}
+
+	db.AutoMigrate(&models.User{})
+	db.AutoMigrate(&models.SessionToken{})
 
 	return db
 }

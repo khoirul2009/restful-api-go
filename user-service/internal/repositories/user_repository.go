@@ -39,6 +39,16 @@ func (r *UserRepository) FetchUserByID(id string) (*models.User, error) {
 	}
 	return &user, nil
 }
+func (r *UserRepository) FetchUserByEmail(email string) (*models.User, error) {
+	var user models.User
+	if err := r.DB.Select("id", "name", "email", "password").First(&user, "email = ?", email).Error; err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return nil, errors.New("user not found")
+		}
+		return nil, err
+	}
+	return &user, nil
+}
 
 // InsertUser inserts a new user into the database
 func (r *UserRepository) InsertUser(user *models.User) error {

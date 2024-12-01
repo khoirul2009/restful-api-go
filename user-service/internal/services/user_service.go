@@ -25,6 +25,9 @@ func (s *UserService) GetUsers() ([]models.User, error) {
 func (s *UserService) GetUserByID(id string) (*models.User, error) {
 	return s.UserRepo.FetchUserByID(id)
 }
+func (s *UserService) GetUserByEmail(id string) (*models.User, error) {
+	return s.UserRepo.FetchUserByID(id)
+}
 
 // CreateUser creates a new user
 func (s *UserService) CreateUser(user *models.User) error {
